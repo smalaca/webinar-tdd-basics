@@ -27,8 +27,8 @@ class ScheduledTransferTest {
 
     @Test
     void shouldRegisterScheduledTransfer() {
-        given(accountRepository.exists("accountFrom")).willReturn(true);
-        given(accountRepository.exists("accountTo")).willReturn(true);
+        givenExistingAccountFor("accountFrom");
+        givenExistingAccountFor("accountTo");
 
         service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13));
 
@@ -39,8 +39,8 @@ class ScheduledTransferTest {
 
     @Test
     void shouldRaiseExceptionWhenNotExistingAccountFromGiven() {
-        given(accountRepository.exists("accountFrom")).willReturn(false);
-        given(accountRepository.exists("accountTo")).willReturn(true);
+        givenNotExistingAccountFor("accountFrom");
+        givenExistingAccountFor("accountTo");
 
         NotExistingAccountException exception = assertThrows(
                 NotExistingAccountException.class, () -> service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13)));
@@ -50,12 +50,20 @@ class ScheduledTransferTest {
 
     @Test
     void shouldRaiseExceptionWhenNotExistingAccountToGiven() {
-        given(accountRepository.exists("accountFrom")).willReturn(true);
-        given(accountRepository.exists("accountTo")).willReturn(false);
+        givenExistingAccountFor("accountFrom");
+        givenNotExistingAccountFor("accountTo");
 
         NotExistingAccountException exception = assertThrows(
                 NotExistingAccountException.class, () -> service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13)));
 
         assertThat(exception).hasMessage("Account with number: \"accountTo\" does not exist.");
+    }
+
+    private void givenExistingAccountFor(String accountNumber) {
+        given(accountRepository.exists(accountNumber)).willReturn(true);
+    }
+
+    private void givenNotExistingAccountFor(String accountNumber) {
+        given(accountRepository.exists(accountNumber)).willReturn(false);
     }
 }
