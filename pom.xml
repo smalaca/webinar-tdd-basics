@@ -8,8 +8,10 @@
     <artifactId>tdd-basics</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>fizz-buzz</module>
+        <module>bank-app</module>
     </modules>
 
     <properties>
