@@ -27,4 +27,11 @@ class FizzBuzzTest {
 
         assertThat(actual).isEqualTo("2");
     }
+
+    @Test
+    void shouldReturnFizzWhenThreeGiven() {
+        String actual = fizzBuzz.convert(3);
+
+        assertThat(actual).isEqualTo("Fizz");
+    }
 }
