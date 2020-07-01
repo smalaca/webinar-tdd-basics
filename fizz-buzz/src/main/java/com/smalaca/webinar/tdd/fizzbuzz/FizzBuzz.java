@@ -5,6 +5,10 @@ class FizzBuzz {
     private static final String BUZZ = "Buzz";
 
     String convert(int number) {
+        if (isDivisibleBy(number, 15)) {
+            return FIZZ + BUZZ;
+        }
+
         if (isDivisibleBy(number, 3)) {
             return FIZZ;
         }
