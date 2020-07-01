@@ -23,7 +23,7 @@ class ScheduledTransferTest {
      */
     private final AccountRepository accountRepository = mock(AccountRepository.class);
     private final ScheduledTransferRegistry registry = mock(ScheduledTransferRegistry.class);
-    private final TransferService service = new TransferServiceFactory().create(registry);
+    private final TransferService service = new TransferServiceFactory().create(registry, accountRepository);
 
     @Test
     void shouldRegisterScheduledTransfer() {
