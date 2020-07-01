@@ -21,4 +21,13 @@ class FizzBuzzTest {
 
         assertThat(actual).isEqualTo("1");
     }
+
+    @Test
+    void shouldReturnTwoAsStringWhenTwoGiven() {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+
+        String actual = fizzBuzz.convert(2);
+
+        assertThat(actual).isEqualTo("2");
+    }
 }
