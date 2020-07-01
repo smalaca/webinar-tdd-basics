@@ -5,18 +5,18 @@ class FizzBuzz {
     private static final String BUZZ = "Buzz";
 
     String convert(int number) {
-        if (isDivisibleByThree(number)) {
+        if (isDivisibleBy(number, 3)) {
             return FIZZ;
         }
 
-        if (number % 5 == 0) {
+        if (isDivisibleBy(number, 5)) {
             return BUZZ;
         }
 
         return String.valueOf(number);
     }
 
-    private boolean isDivisibleByThree(int number) {
-        return number % 3 == 0;
+    private boolean isDivisibleBy(int number, int divisor) {
+        return number % divisor == 0;
     }
 }
