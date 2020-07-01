@@ -18,6 +18,10 @@ class TransferService {
             throw new NotExistingAccountException(accountFrom);
         }
 
+        if (!accountRepository.exists(accountTo)) {
+            throw new NotExistingAccountException(accountTo);
+        }
+
         ScheduledTransfer scheduledTransfer = scheduledTransferFactory.create(name, accountFrom, accountTo, amount);
 
         registry.register(scheduledTransfer);
