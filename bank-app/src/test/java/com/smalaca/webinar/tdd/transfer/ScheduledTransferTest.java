@@ -22,7 +22,7 @@ class ScheduledTransferTest {
     @Test
     void shouldRegisterScheduledTransfer() {
         ScheduledTransferRegistry registry = mock(ScheduledTransferRegistry.class);
-        TransferService service = new TransferServiceFactory().create();
+        TransferService service = new TransferServiceFactory().create(registry);
 
         service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13));
 

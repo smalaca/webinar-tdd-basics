@@ -1,7 +1,7 @@
 package com.smalaca.webinar.tdd.transfer;
 
 class TransferServiceFactory {
-    TransferService create() {
-        return null;
+    TransferService create(ScheduledTransferRegistry registry) {
+        return new TransferService(registry);
     }
 }
