@@ -1,9 +1,11 @@
 package com.smalaca.webinar.tdd.fizzbuzz;
 
 class FizzBuzz {
+    private static final String FIZZ = "Fizz";
+
     String convert(int number) {
         if (isDivisibleByThree(number)) {
-            return "Fizz";
+            return FIZZ;
         }
 
         return String.valueOf(number);
