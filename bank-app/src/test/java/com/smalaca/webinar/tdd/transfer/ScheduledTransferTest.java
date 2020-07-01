@@ -28,6 +28,7 @@ class ScheduledTransferTest {
     @Test
     void shouldRegisterScheduledTransfer() {
         given(accountRepository.exists("accountFrom")).willReturn(true);
+        given(accountRepository.exists("accountTo")).willReturn(true);
 
         service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13));
 
@@ -39,10 +40,22 @@ class ScheduledTransferTest {
     @Test
     void shouldRaiseExceptionWhenNotExistingAccountFromGiven() {
         given(accountRepository.exists("accountFrom")).willReturn(false);
+        given(accountRepository.exists("accountTo")).willReturn(true);
 
         NotExistingAccountException exception = assertThrows(
                 NotExistingAccountException.class, () -> service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13)));
 
         assertThat(exception).hasMessage("Account with number: \"accountFrom\" does not exist.");
+    }
+
+    @Test
+    void shouldRaiseExceptionWhenNotExistingAccountToGiven() {
+        given(accountRepository.exists("accountFrom")).willReturn(true);
+        given(accountRepository.exists("accountTo")).willReturn(false);
+
+        NotExistingAccountException exception = assertThrows(
+                NotExistingAccountException.class, () -> service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13)));
+
+        assertThat(exception).hasMessage("Account with number: \"accountTo\" does not exist.");
     }
 }
