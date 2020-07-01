@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FizzBuzzTest {
+    private final FizzBuzz fizzBuzz = new FizzBuzz();
     /*
       REQUIREMENTS:
       1. Return number as string when get number.
@@ -15,8 +16,6 @@ class FizzBuzzTest {
 
     @Test
     void shouldReturnOneAsStringWhenOneGiven() {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-
         String actual = fizzBuzz.convert(1);
 
         assertThat(actual).isEqualTo("1");
@@ -24,8 +23,6 @@ class FizzBuzzTest {
 
     @Test
     void shouldReturnTwoAsStringWhenTwoGiven() {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-
         String actual = fizzBuzz.convert(2);
 
         assertThat(actual).isEqualTo("2");
