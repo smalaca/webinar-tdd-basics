@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
@@ -18,12 +19,11 @@ class ScheduledTransferTest {
         - money to transfer
     2. Throw exception if there's no account for account number
      */
+    private final ScheduledTransferRegistry registry = mock(ScheduledTransferRegistry.class);
+    private final TransferService service = new TransferServiceFactory().create(registry);
 
     @Test
     void shouldRegisterScheduledTransfer() {
-        ScheduledTransferRegistry registry = mock(ScheduledTransferRegistry.class);
-        TransferService service = new TransferServiceFactory().create(registry);
-
         service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13));
 
         ScheduledTransfer expected = new ScheduledTransfer(
