@@ -10,8 +10,8 @@ class TransferService {
     }
 
     void schedule(String name, String accountFrom, String accountTo, BigDecimal amount) {
-        String id = accountFrom + "-" + accountTo + "-" + name;
-        ScheduledTransfer scheduledTransfer = new ScheduledTransfer(id, name, accountFrom, accountTo, amount);
+        ScheduledTransfer scheduledTransfer = new ScheduledTransferFactory()
+                .create(name, accountFrom, accountTo, amount);
 
         registry.register(scheduledTransfer);
     }
