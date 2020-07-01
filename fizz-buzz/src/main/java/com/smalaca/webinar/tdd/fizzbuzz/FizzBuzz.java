@@ -5,19 +5,17 @@ class FizzBuzz {
     private static final String BUZZ = "Buzz";
 
     String convert(int number) {
-        if (isDivisibleBy(number, 15)) {
-            return FIZZ + BUZZ;
-        }
+        String converted = "";
 
         if (isDivisibleBy(number, 3)) {
-            return FIZZ;
+            converted += FIZZ;
         }
 
         if (isDivisibleBy(number, 5)) {
-            return BUZZ;
+            converted += BUZZ;
         }
 
-        return String.valueOf(number);
+        return converted.isEmpty() ? String.valueOf(number) : converted;
     }
 
     private boolean isDivisibleBy(int number, int divisor) {
