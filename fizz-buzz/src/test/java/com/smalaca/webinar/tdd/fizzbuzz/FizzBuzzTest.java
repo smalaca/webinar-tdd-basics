@@ -1,5 +1,9 @@
 package com.smalaca.webinar.tdd.fizzbuzz;
 
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 class FizzBuzzTest {
     /*
       REQUIREMENTS:
@@ -8,4 +12,13 @@ class FizzBuzzTest {
       3. Return Buzz when get number divisible by 5.
       3. Return FizzBuzz when get number divisible by 15.
      */
+
+    @Test
+    void shouldReturnOneAsStringWhenOneGiven() {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+
+        String actual = fizzBuzz.convert(1);
+
+        assertThat(actual).isEqualTo("1");
+    }
 }
