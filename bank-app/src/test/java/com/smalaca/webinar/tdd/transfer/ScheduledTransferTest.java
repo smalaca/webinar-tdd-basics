@@ -18,4 +18,16 @@ class ScheduledTransferTest {
         - money to transfer
     2. Throw exception if there's no account for account number
      */
+
+    @Test
+    void shouldRegisterScheduledTransfer() {
+        ScheduledTransferRegistry registry = mock(ScheduledTransferRegistry.class);
+        TransferService service = new TransferServiceFactory().create();
+
+        service.schedule("name", "accountFrom", "accountTo", BigDecimal.valueOf(13));
+
+        ScheduledTransfer expected = new ScheduledTransfer(
+                "accountFrom-accountTo-name", "name", "accountFrom", "accountTo", BigDecimal.valueOf(13));
+        then(registry).should().register(expected);
+    }
 }
