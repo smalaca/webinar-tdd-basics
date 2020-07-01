@@ -2,10 +2,14 @@ package com.smalaca.webinar.tdd.fizzbuzz;
 
 class FizzBuzz {
     String convert(int number) {
-        if (number % 3 == 0) {
+        if (isDivisibleByThree(number)) {
             return "Fizz";
         }
 
         return String.valueOf(number);
+    }
+
+    private boolean isDivisibleByThree(int number) {
+        return number % 3 == 0;
     }
 }
